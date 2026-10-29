@@ -35,6 +35,8 @@ interface Project {
   summary: string;
   tech: string[];
   repo?: string;
+  /** Live, runnable version of the project. */
+  demo?: string;
   note?: string;
 }
 
@@ -115,6 +117,7 @@ const PROJECTS: Project[] = [
       'Angular 19 with NgRx (store, effects, entity), route guards, and customer records enriched from public country and nationality APIs.',
     tech: ['Angular 19', 'NgRx', 'TypeScript'],
     repo: 'https://github.com/PhillipMarais/Genasys-Assessment',
+    demo: 'https://phillipmarais.github.io/Genasys-Assessment/',
   },
   {
     id: 'tower',
@@ -124,6 +127,7 @@ const PROJECTS: Project[] = [
       'Assigns frequencies to cell towers so towers on the same frequency are as far apart as possible, using an algorithm I wrote in Java.',
     tech: ['Java'],
     repo: 'https://github.com/PhillipMarais/Cell-Phone-Tower-Problem',
+    demo: 'https://phillipmarais.github.io/Cell-Phone-Tower-Problem/',
   },
 ];
 

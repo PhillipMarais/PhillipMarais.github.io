@@ -217,7 +217,7 @@ export class QuotePreview {
         <circle [attr.cx]="t.x" [attr.cy]="t.y" r="6" [attr.fill]="t.c" [style.--i]="$index" />
       }
     </svg>
-    <p class="caption">Towers sharing a frequency, kept far apart. Live demo coming soon.</p>
+    <p class="caption">Towers sharing a frequency, kept far apart. Try the live demo to watch it run step by step.</p>
   `,
   styles: `
     .map {

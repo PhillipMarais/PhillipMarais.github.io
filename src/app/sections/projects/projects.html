@@ -123,6 +123,12 @@
                   <li>{{ t }}</li>
                 }
               </ul>
+              @if (project.demo) {
+                <a class="repo demo" [href]="project.demo" target="_blank" rel="noopener">
+                  Live demo<span class="visually-hidden">: {{ project.title }} (opens in a new tab)</span>
+                  <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg>
+                </a>
+              }
               @if (project.repo) {
                 <a class="repo" [href]="project.repo" target="_blank" rel="noopener">
                   View on GitHub<span class="visually-hidden">: {{ project.title }} (opens in a new tab)</span>
