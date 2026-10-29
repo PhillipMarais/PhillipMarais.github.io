@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="33 -118 470 470">
+  <style>
+    .ink { fill: #141414; }
+    .brand { fill: #ff6a13; }
+    @media (prefers-color-scheme: dark) { .ink { fill: #f2efea; } }
+  </style>
+  <path class="ink" d="M39 95.2L75 125.8V159.8L43 187H39Z"/>
+  <path class="ink" d="M206 47V187H174V112.2L116.5 161L94.2 142Z"/>
+  <path class="brand" d="M39 47L116.6 113L94.3 132L39 85Z"/>
+  <path class="brand" d="M214 47H374L335.2 80H214Z"/>
+  <path class="brand" d="M261 87H293V163L264.8 187H261Z"/>
+  <path class="ink" d="M387 47H494L455.2 80H380V101H462A35 35 0 0 1 497 136V152A35 35 0 0 1 462 187H312L353.2 152H462V133H375A30 30 0 0 1 345 103V82.7Z"/>
+</svg>

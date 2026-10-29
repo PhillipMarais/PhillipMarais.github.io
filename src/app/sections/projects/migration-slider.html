@@ -1,0 +1,40 @@
+<figure class="slider">
+  <div
+    #frame
+    class="frame"
+    [class.dragging]="dragging()"
+    [style.--p]="pos()"
+    (pointerdown)="onPointerDown($event)"
+    (pointermove)="onPointerMove($event)"
+    (pointerup)="onPointerUp($event)"
+    (pointercancel)="onPointerUp($event)"
+  >
+    <div class="layer" aria-hidden="true"><app-legacy-screen /></div>
+    <div class="layer after" aria-hidden="true"><app-modern-screen /></div>
+
+    <span class="tag before-tag" aria-hidden="true">AngularJS 1.8.2</span>
+    <span class="tag after-tag" aria-hidden="true">Angular 19</span>
+
+    <div class="divider" aria-hidden="true"></div>
+    <div
+      #handle
+      class="handle"
+      role="slider"
+      tabindex="0"
+      aria-label="Compare the AngularJS 1.8.2 and Angular 19 screens"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      [attr.aria-valuenow]="rounded()"
+      [attr.aria-valuetext]="valueText()"
+      (keydown)="onKeydown($event)"
+    >
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <path d="M9 6 3 12l6 6M15 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+  </div>
+
+  <figcaption>
+    <p class="how">Drag the handle, or focus it and use the arrow keys, to compare.</p>
+  </figcaption>
+</figure>

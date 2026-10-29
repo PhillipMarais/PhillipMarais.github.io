@@ -1,0 +1,73 @@
+<section id="skills" class="section" aria-labelledby="skills-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num" aria-hidden="true">04</span>
+      <h2 id="skills-title" class="section-title">Skills</h2>
+    </div>
+    <p class="intro reveal">Pick a skill to see where I've used it.</p>
+
+    <div
+      class="layout"
+      (pointerenter)="hovering.set(true)"
+      (pointerleave)="hovering.set(false)"
+      (focusin)="focusWithin.set(true)"
+      (focusout)="onFocusOut($event)"
+    >
+      <div class="groups">
+        @for (group of groups; track group.title; let g = $index) {
+          <div class="group reveal" role="group" [attr.aria-labelledby]="'skill-group-' + g">
+            <h3 class="group-title" [id]="'skill-group-' + g">
+              <span class="group-num" aria-hidden="true">{{ pad(g) }}</span>{{ group.title }}
+            </h3>
+            <ul class="chips">
+              @for (skill of group.skills; track skill.name; let i = $index) {
+                <li>
+                  <button
+                    type="button"
+                    class="chip"
+                    [class.selected]="selected() === skill.name"
+                    [attr.aria-pressed]="selected() === skill.name"
+                    [attr.aria-controls]="'skill-detail-' + g"
+                    (click)="select(skill)"
+                    (pointerenter)="onPointerEnter($event, skill)"
+                    (focus)="select(skill)"
+                  >
+                    {{ skill.name }}
+                    @if (skill.evidence.length) {
+                      <span class="count" aria-hidden="true">{{ skill.evidence.length }}</span>
+                    }
+                  </button>
+                </li>
+              }
+            </ul>
+            <!-- Phones: the card opens right under the group being tapped -->
+            @if (detail().group === group.title) {
+              <div class="detail inline" [id]="'skill-detail-' + g" aria-live="polite">
+                <app-skill-card [detail]="detail()" />
+              </div>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Wide screens: one sticky card beside the groups -->
+      <aside class="detail side reveal" aria-live="polite" aria-label="Where I've used this skill">
+        <app-skill-card [detail]="detail()" />
+        @if (autoplay()) {
+          <!-- Countdown to the next random skill; re-created per skill so it restarts -->
+          <span class="track" aria-hidden="true">
+            @for (key of [selected()]; track key) {
+              <span
+                class="fill"
+                [class.running]="running()"
+                [style.animation-duration.ms]="cycleMs"
+                (animationend)="next()"
+              ></span>
+            }
+          </span>
+        }
+      </aside>
+    </div>
+  </div>
+</section>
+

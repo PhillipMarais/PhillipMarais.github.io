@@ -1,0 +1,77 @@
+<dialog #dialog class="chat" aria-labelledby="chat-title" (close)="onClosed()" (click)="onDialogClick($event)">
+  <div class="shell">
+    <aside class="profile">
+      <div class="avatar">
+        <img src="images/phillip-headshot.webp" alt="" width="600" height="800" decoding="async" />
+      </div>
+      <div class="who">
+        <h2 id="chat-title" class="name">Phillip Marais</h2>
+        <p class="role">Front-end-focused full-stack developer</p>
+        <p class="where">Somerset West · UTC+2</p>
+      </div>
+    </aside>
+
+    <section class="conversation" aria-label="Conversation">
+      <header class="top">
+        <p class="status"><span class="dot" aria-hidden="true"></span>Ask me a question</p>
+        <button type="button" class="close" (click)="close()" aria-label="Close chat">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+        </button>
+      </header>
+
+      <div #log class="log" role="log" aria-live="polite" aria-relevant="additions">
+        @for (message of messages(); track message.id) {
+          <div class="msg" [class.mine]="message.from === 'visitor'">
+            @if (message.from === 'me') {
+              <span class="sender visually-hidden">Phillip:</span>
+            } @else {
+              <span class="sender visually-hidden">You:</span>
+            }
+            <div class="bubble">
+              @for (p of message.paragraphs; track $index) {
+                <p>{{ p }}</p>
+              }
+              @if (message.links) {
+                <p class="links">
+                  @for (link of message.links; track link.href) {
+                    <a
+                      [href]="link.href"
+                      [attr.target]="isExternal(link) ? '_blank' : null"
+                      [attr.rel]="isExternal(link) ? 'noopener' : null"
+                      (click)="onLinkClick(link)"
+                      >{{ link.label }}</a
+                    >
+                  }
+                </p>
+              }
+            </div>
+          </div>
+        }
+        @if (typing()) {
+          <div class="msg">
+            <div class="bubble typing" aria-label="Phillip is typing">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+        }
+      </div>
+
+      <footer class="ask">
+        @if (remaining().length) {
+          <p class="ask-label" id="chat-suggestions">Questions you can ask</p>
+          <ul class="chips" aria-labelledby="chat-suggestions">
+            @for (topic of remaining(); track topic.id) {
+              <li>
+                <button type="button" class="chip" [disabled]="typing()" (click)="ask(topic)">{{ topic.question }}</button>
+              </li>
+            }
+          </ul>
+        } @else {
+          <p class="ask-label">That's everything for now.</p>
+          <button type="button" class="chip" (click)="startOver()">Start over</button>
+        }
+        <p class="fine">These are answers I've written ahead of time. For anything else, email me.</p>
+      </footer>
+    </section>
+  </div>
+</dialog>

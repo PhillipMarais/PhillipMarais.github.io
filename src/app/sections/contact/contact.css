@@ -1,0 +1,271 @@
+:host {
+  display: block;
+  overflow-x: clip;
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-l);
+  align-items: start;
+}
+
+/* ---- Pitch (left) ---- */
+.hello {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 1.6rem + 5vw, 5.2rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.dot {
+  color: var(--brand);
+}
+
+.lead {
+  max-width: 34ch;
+  margin-top: 1rem;
+  font-size: var(--step-1);
+  color: var(--ink-soft);
+}
+
+.email-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  margin-top: var(--space-m);
+}
+
+/* Big email with an underline that draws in on hover */
+.email {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 0.9rem + 1.3vw, 1.75rem);
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.email::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.2rem;
+  height: 2px;
+  background: var(--brand);
+  transform: scaleX(0.25);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.email:hover::after,
+.email:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.85rem;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    background-color 0.2s;
+}
+
+.copy:hover {
+  border-color: var(--brand);
+  color: var(--accent);
+}
+
+.copy.done {
+  color: var(--brand-ink);
+  background: var(--brand);
+  border-color: var(--brand);
+}
+
+.copy svg,
+.stroke,
+.arrow {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.facts {
+  display: grid;
+  gap: 0.75rem;
+  margin: var(--space-l) 0 0;
+}
+
+.facts div {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.facts dt {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.facts dd {
+  margin: 0;
+}
+
+.clock dd {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Small live dot beside the local time */
+.pulse {
+  position: relative;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--brand);
+  border-radius: 50%;
+}
+
+.pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--brand);
+  animation: ping 2.4s ease-out infinite;
+}
+
+@keyframes ping {
+  from {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2.8);
+  }
+}
+
+/* ---- Link cards (right) ---- */
+.cards {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  overflow: hidden;
+  color: var(--ink);
+  text-decoration: none;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  isolation: isolate;
+  transition:
+    border-color 0.3s,
+    color 0.3s;
+}
+
+/* Orange sweep from the left on hover */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--brand);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s var(--ease-out);
+}
+
+.card:hover,
+.card:focus-visible {
+  color: var(--brand-ink);
+  border-color: var(--brand);
+}
+
+.card:hover::before,
+.card:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  transition: border-color 0.3s;
+}
+
+.card:hover .icon,
+.card:focus-visible .icon {
+  border-color: color-mix(in srgb, var(--brand-ink) 35%, transparent);
+}
+
+.icon .fill {
+  fill: currentColor;
+}
+
+.text {
+  display: grid;
+  min-width: 0;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.handle {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  overflow-wrap: anywhere;
+  transition: color 0.3s;
+}
+
+.card:hover .handle,
+.card:focus-visible .handle {
+  color: color-mix(in srgb, var(--brand-ink) 75%, transparent);
+}
+
+.arrow {
+  transition: transform 0.35s var(--ease-out);
+}
+
+.card:hover .arrow,
+.card:focus-visible .arrow {
+  transform: translate(3px, -3px);
+}
+
+@media (min-width: 56rem) {
+  .grid {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: var(--space-xl);
+    align-items: center;
+  }
+}

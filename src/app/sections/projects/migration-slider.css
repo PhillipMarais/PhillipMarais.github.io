@@ -1,0 +1,121 @@
+﻿:host {
+  display: block;
+}
+
+.slider {
+  margin: 0;
+}
+
+.frame {
+  --pos: calc(var(--p) * 1%);
+  position: relative;
+  container-type: inline-size;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+  box-shadow: 0 1px 0 var(--rule), 0 24px 48px -32px var(--shadow);
+  cursor: ew-resize;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+@media (min-width: 40rem) {
+  .frame {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+}
+
+.after {
+  clip-path: inset(0 0 0 var(--pos));
+}
+
+.tag {
+  position: absolute;
+  top: 0.75rem;
+  padding: 0.2rem 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #fff;
+  background: rgb(20 20 20 / 0.85);
+  border-radius: 999px;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.before-tag {
+  left: 0.75rem;
+  opacity: clamp(0, (var(--p) - 18) / 10, 1);
+}
+
+.after-tag {
+  right: 0.75rem;
+  color: var(--brand-ink);
+  background: var(--brand);
+  opacity: clamp(0, (82 - var(--p)) / 10, 1);
+}
+
+.divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pos);
+  width: 2px;
+  margin-left: -1px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgb(20 20 20 / 0.35);
+  pointer-events: none;
+}
+
+.handle {
+  position: absolute;
+  top: 50%;
+  left: var(--pos);
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  translate: -50% -50%;
+  color: var(--brand-ink);
+  background: var(--brand);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 4px 14px rgb(20 20 20 / 0.35);
+  transition: scale 0.2s var(--ease-out);
+}
+
+.frame:hover .handle,
+.dragging .handle {
+  scale: 1.08;
+}
+
+.handle:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 50%;
+}
+
+figcaption {
+  display: grid;
+  gap: 0.35rem;
+  max-width: var(--measure);
+  margin-top: var(--space-s);
+  color: var(--ink-soft);
+}
+
+.how {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--accent);
+}
+
+.fine {
+  font-size: var(--step--1);
+}
