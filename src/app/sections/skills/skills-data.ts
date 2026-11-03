@@ -21,6 +21,7 @@ const CMS = 'CMS Systems';
 const WIM = 'WIM Technologies';
 const STOCK = 'Stock Management App';
 const QUOTE = 'Customer and quote manager';
+const FORGETLESS = 'ForgetLess';
 
 export const SKILL_GROUPS: SkillGroup[] = [
   {
@@ -43,6 +44,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
           { where: CMS, what: 'WhatsApp messaging in the workshop system, with real-time updates over SignalR' },
           { where: CMS, what: 'Customer workshop app built with TypeScript and Ionic' },
           { where: QUOTE, what: 'Angular 19 and NgRx (store, effects, entity)' },
+          { where: FORGETLESS, what: 'Android calendar, tasks and notes app in React Native, written in TypeScript' },
         ],
       },
       {
@@ -96,6 +98,48 @@ export const SKILL_GROUPS: SkillGroup[] = [
           { where: WIM, what: 'Front-end work with HTML, CSS and JavaScript' },
           { where: WIM, what: 'UI improvements to a Google Maps project, working with a graphic designer' },
         ],
+      },
+    ],
+  },
+  {
+    title: 'Mobile',
+    skills: [
+      {
+        name: 'React Native and Expo',
+        evidence: [
+          {
+            where: FORGETLESS,
+            what: 'Built an Android calendar, tasks and notes app with day, week and month views, themes and tablet layouts',
+          },
+        ],
+      },
+      {
+        name: 'Kotlin',
+        evidence: [
+          {
+            where: FORGETLESS,
+            what: 'Native Expo module for alarms that ring over the lock screen, set again after a restart',
+          },
+          { where: FORGETLESS, what: 'Quick-add popup for home screen widgets, and reading holidays from the phone calendar' },
+        ],
+      },
+      {
+        name: 'Android home screen widgets',
+        evidence: [
+          { where: FORGETLESS, what: 'Five widgets: Today, Calendar, Tasks, Notes and Voice note, with tick-off and quick add' },
+        ],
+      },
+      {
+        name: 'SQLite',
+        evidence: [{ where: FORGETLESS, what: 'All data kept on the phone in SQLite, with versioned schema migrations' }],
+      },
+      {
+        name: 'Speech to text',
+        evidence: [{ where: FORGETLESS, what: "Voice notes using the phone's own speech recognition" }],
+      },
+      {
+        name: 'Jest',
+        evidence: [{ where: FORGETLESS, what: 'Unit tests for repeats, alarms, holidays and other app logic' }],
       },
     ],
   },
@@ -178,7 +222,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
   {
     title: 'Tools and process',
     skills: [
-      { name: 'Git', evidence: [] },
+      { name: 'Git', evidence: [{ where: FORGETLESS, what: 'Open source on GitHub under the MIT licence' }] },
       { name: 'Bitbucket pipelines', evidence: [] },
       { name: 'Jira', evidence: [] },
       {
@@ -186,6 +230,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
         evidence: [
           { where: CMS, what: 'Used Claude to help improve performance on projects with new tables and columns' },
           { where: CMS, what: 'Used Claude to help write Dapper queries that act as stored procedures for the dashboards' },
+          { where: FORGETLESS, what: 'Built the app with Claude Code' },
         ],
       },
       {
