@@ -271,3 +271,140 @@ export class TowerPreview {
     (i) => [this.towers[i], this.towers[i + 1], this.towers[i].c] as const,
   );
 }
+
+@Component({
+  selector: 'app-forgetless-preview',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <div class="mock" aria-hidden="true">
+      <div class="widget">
+        <div class="head">
+          <span class="day"><b>Tuesday</b> 3 November</span><span class="add">+</span>
+        </div>
+        <p class="label">Schedule</p>
+        @for (event of events; track event.title) {
+          <div class="row event">
+            <i class="bar"></i><span>{{ event.title }}<small>{{ event.time }}</small></span>
+          </div>
+        }
+        <p class="label">Tasks</p>
+        @for (task of tasks; track task.title) {
+          <div class="row task" [class.done]="task.done">
+            <i class="tick"></i><span>{{ task.title }}</span>
+            @if (task.alarm) {
+              <span class="alarm">⏰ {{ task.alarm }}</span>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  `,
+  styles: `
+    .mock {
+      font-size: 0.78rem;
+    }
+    .widget {
+      display: grid;
+      gap: 0.4rem;
+      max-width: 22rem;
+      padding: 0.9rem 1rem;
+      color: #f2efea;
+      background: #0d0d0e;
+      border-radius: 18px;
+    }
+    .head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.95rem;
+    }
+    .day b {
+      color: var(--brand);
+    }
+    .add {
+      display: grid;
+      place-items: center;
+      width: 1.6rem;
+      height: 1.6rem;
+      color: var(--brand-ink);
+      background: var(--brand);
+      border-radius: 50%;
+    }
+    .label {
+      margin: 0.3rem 0 0;
+      color: var(--brand);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .bar {
+      width: 3px;
+      height: 1.8rem;
+      background: var(--brand);
+      border-radius: 2px;
+    }
+    small {
+      display: block;
+      color: #a8a39c;
+    }
+    .tick {
+      width: 0.9rem;
+      height: 0.9rem;
+      border: 2px solid #a8a39c;
+      border-radius: 50%;
+    }
+    .task.done span {
+      color: #a8a39c;
+      text-decoration: line-through;
+    }
+    .task.done .tick {
+      background: var(--brand);
+      border-color: var(--brand);
+    }
+    .alarm {
+      margin-left: auto;
+      padding: 0.1rem 0.45rem;
+      color: var(--brand);
+      border: 1px solid color-mix(in srgb, var(--brand) 50%, transparent);
+      border-radius: 999px;
+      font-size: 0.68rem;
+    }
+    /* When the card comes forward: the day's items appear one after another */
+    :host-context(.card[data-pos='active']) .row {
+      animation: row-in 0.5s var(--ease-out) both;
+    }
+    :host-context(.card[data-pos='active']) .row:nth-of-type(2) {
+      animation-delay: 0.1s;
+    }
+    :host-context(.card[data-pos='active']) .task {
+      animation-delay: 0.3s;
+    }
+    @keyframes row-in {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      :host-context(.card[data-pos='active']) .row {
+        animation: none;
+      }
+    }
+  `,
+})
+export class ForgetLessPreview {
+  protected readonly events = [
+    { title: 'Team stand-up', time: '09:00 – 09:30' },
+    { title: 'Dentist', time: '14:00 – 15:00' },
+  ];
+  protected readonly tasks = [
+    { title: 'Buy groceries', done: true, alarm: '' },
+    { title: 'Call the plumber', done: false, alarm: '17:00' },
+  ];
+}

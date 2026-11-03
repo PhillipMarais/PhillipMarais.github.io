@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { prefersReducedMotion } from '../../core/motion';
 import { MigrationSlider } from './migration-slider';
-import { QuotePreview, StockPreview, TowerPreview } from './previews';
+import { ForgetLessPreview, QuotePreview, StockPreview, TowerPreview } from './previews';
 import { CustomerAppPreview, DataPreview, ExportsPreview, TeamsPreview, WhatsAppPreview } from './work-previews';
 
 type ProjectKind =
@@ -21,6 +21,7 @@ type ProjectKind =
   | 'teams'
   | 'exports'
   | 'data'
+  | 'forgetless'
   | 'stock'
   | 'quote'
   | 'tower';
@@ -101,6 +102,15 @@ const PROJECTS: Project[] = [
     note: WORK_NOTE,
   },
   {
+    id: 'forgetless',
+    kind: 'forgetless',
+    title: 'ForgetLess',
+    summary:
+      'Built an Android calendar, tasks and notes app with Claude Code: alarms that ring over the lock screen, five home screen widgets and voice-to-text notes. Everything stays on the phone, with no account and no internet access.',
+    tech: ['React Native', 'Expo', 'TypeScript', 'SQLite', 'Kotlin', 'Claude Code'],
+    repo: 'https://github.com/PhillipMarais/ForgetLess',
+  },
+  {
     id: 'stock',
     kind: 'stock',
     title: 'Stock Management App',
@@ -140,6 +150,7 @@ const PROJECTS: Project[] = [
     TeamsPreview,
     ExportsPreview,
     DataPreview,
+    ForgetLessPreview,
     StockPreview,
     QuotePreview,
     TowerPreview,
